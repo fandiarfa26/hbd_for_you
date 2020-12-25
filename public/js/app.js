@@ -1,7 +1,8 @@
 var hbd = new Vue ({
   el: '#hbd',
   data: {
-    dateEvent: new Date("Jan 1, 2021 00:00:00").getTime(),
+    //dateEvent: new Date("Jan 1, 2021 00:00:00").getTime(),
+    dateEvent: new Date("Dec 25, 2020 13:03:00").getTime(),
     days: 0,
     hours: 0,
     minutes: 0,
