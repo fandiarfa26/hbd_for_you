@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> 🎊🎂🎉 </title>
+  <link rel="stylesheet" href="./css/firework.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <style>
+    body {
+      background-color: #2d3436;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23fd79a8' fill-opacity='0.4'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .flipcard-enter-active {
+      animation: flipInAnimation 0.6s ease-in-out;
+    }
+    .flipcard-leave-active {
+      animation: flipOutAnimation 0.6s ease-in-out;
+    }
+    @keyframes flipInAnimation {
+      from { transform: scaleX(0);  }
+      to { transform: scaleX(1); }
+    }
+    @keyframes flipOutAnimation {
+      from { transform: scaleX(1); }
+      to { transform: scaleX(0); }
+    }
+  </style>
+</head>
+
+<body class="font-body">
+  <div id="hbd">
+    <div class="pyro" :class="{'hidden': !showFirework}">
+      <div class="before"></div>
+      <div class="after"></div>
+    </div>
+    <div class="w-screen h-screen flex justify-center items-center">
+      
+      <transition name="flipcard">
+        <div v-if="isOpen" class="absolute transform w-3/4 lg:w-1/5 cursor-pointer" @click="flipCard()">
+          <div class="relative">
+            <div class="absolute w-full h-full flex items-center">
+              <img src="./img/balloons.svg" class="absolute z-0 w-1/3 transform">
+              <img src="./img/balloons.svg" class="absolute z-0 w-1/3 transform right-0" style="transform: scaleX(-1)">
+            </div>
+            <div class="p-2 bg-white rounded-lg shadow-lg z-10">
+              <div class="rounded border-4 h-96 border-pink-300 border-dotted p-4 flex flex-col justify-center items-center gap-1">
+                <img src="./img/mi1.png" class="w-32 h-32 rounded-full p-1 border-2 border-pink-300">
+                <img src="https://img.icons8.com/color/300/000000/birthday.png" class="w-28 h-28"/>
+                <div class="text-center"> Happy Birthday Sayang ❤️ </div>
+                <div class="text-sm text-gray-400">dari 🐼</div>
+                <div class="text-xs text-gray-200 text-right mt-3">Tekan Kartu</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+      <transition name="flipcard">
+        <div v-if="isFlip" class="absolute transform w-3/4 lg:w-1/5 cursor-pointer" @click="flipCard()">
+          <div class="relative">
+            <div class="p-2 bg-white rounded-lg shadow-lg z-10">
+              <div class="rounded border-4 h-96 border-pink-300 border-dotted p-3 flex flex-col justify-center gap-1">
+                <p class="text-sm mb-3">Untuk Mitha ❤️,</p>
+                <p class="text-sm mb-1">Selamat ulang tahun ya 🎉. </p>
+                <p class="text-sm mb-3">Semoga rejekimu dilancarkan. Semoga tahun ke depan bisa lebih baik lagi. Semoga apa yang kamu inginkan bisa terwujud 🙏.</p>
+                <p class="text-sm">Happy birthday my world 🌎.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+      
+      <transition 
+        enter-active-class="ease-out duration-300" 
+        enter-class="opacity-0"
+        enter-to-class="opacity-100" 
+        leave-active-class="ease-in duration-300"
+        leave-class="opacity-100" 
+        leave-to-class="opacity-0">
+      <div v-if="isWaiting" class="w-3/4 lg:w-1/5 p-3 bg-white rounded-lg shadow-lg">
+        <div class="flex flex-col items-center gap-1">
+          <img src="https://img.icons8.com/plasticine/300/000000/gift.png" class="w-32 h-32 animate-bounce" />
+          <div v-if="!isTimeout" class="flex flex-col items-center gap-1 w-full">
+            <span class="text-sm">Tunggu sampai waktunya</span>
+            <div class="bg-pink-400 py-2 w-full text-white text-2xl rounded-md flex justify-center items-center gap-2">
+              <span v-text="days"></span>
+              <span>h</span>
+              <span v-text="hours"></span>
+              <span>j</span>
+              <span v-text="minutes"></span>
+              <span>m</span>
+              <span v-text="seconds"></span>
+              <span>d</span>
+            </div>
+          </div>
+          <a v-if="isTimeout" href="javascript:void(0)" @click="openGift()" class="w-full text-center bg-pink-500 text-xl py-2 rounded-md text-white">Buka Kado</a>
+        </div>
+      </div>
+      </transition>
+      <audio ref="my_audio" controls class="hidden">
+        <source src="./audio/happiest_year.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+
+</html>
